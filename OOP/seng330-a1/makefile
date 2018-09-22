@@ -11,7 +11,6 @@ tests: tests.o player.o team.o league.o
 tests.o: tests.cpp
 	$(CC) $(CFLAGS) tests.cpp
 	
-	
 player.o: hockey.h player.h player.cpp 
 	$(CC) $(CFLAGS) player.cpp
 	
