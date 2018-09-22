@@ -3,9 +3,6 @@
 using namespace Hockey;
 
 
-Hockey::Player::Player() {}
-
-
 Hockey::Player::Player(char *name, unsigned int points, Role position) {
 	strncpy(this->name, name, MAX_NAME_LEN);
 	this->points = points;
@@ -15,13 +12,6 @@ Hockey::Player::Player(char *name, unsigned int points, Role position) {
 
 void Hockey::Player::get_name(char *container) {
 	strncpy(container, this->name, MAX_NAME_LEN);
-}
-
-
-void Hockey::Player::copy(Player p) {
-	p.get_name(this->name);
-	this->points   = p.get_points();
-	this->position = p.get_position();
 }
 
 

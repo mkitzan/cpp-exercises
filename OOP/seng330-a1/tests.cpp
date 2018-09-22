@@ -32,7 +32,7 @@ void team_tests() {
 	char name[MAX_NAME_LEN];
 	
 	Team t(oilers);
-	Player p(p_name, 108, CENTER);
+	Player *p = new Player(p_name, 108, CENTER);
 	
 	t.get_name(name);
 	assert(!strncmp(name, oilers, MAX_NAME_LEN));
@@ -70,8 +70,7 @@ void league_tests() {
 	char p4[] = "Monahan";
 	char name[MAX_NAME_LEN];
 	
-	Player player;
-	Team   team;
+	Team   *team;
 	League league(l1);
 	
 	league.get_name(name);
@@ -84,22 +83,16 @@ void league_tests() {
 	assert(league.remove_team(t1) == 0);
 	cout << "League remove_team (empty) passed" << endl;
 	
-	team = Team(t1);
-	player = Player(p1, 108, CENTER);
-	team.add_player(player);
-	
-	player = Player(p2, 70, CENTER);
-	team.add_player(player);
+	team = new Team(t1);
+	team->add_player(new Player(p1, 108, CENTER));
+	team->add_player(new Player(p2, 70, CENTER));
 	
 	league.add_team(team);
 	assert(league.get_size() == 1);
 	
-	team = Team(t2);
-	player = Player(p3, 84, WINGER);
-	team.add_player(player);
-	
-	player = Player(p4, 64, CENTER);
-	team.add_player(player);
+	team = new Team(t2);
+	team->add_player(new Player(p3, 84, WINGER));
+	team->add_player(new Player(p4, 64, CENTER));
 	
 	league.add_team(team);
 	assert(league.get_size() == 2);

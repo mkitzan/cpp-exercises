@@ -11,10 +11,7 @@ namespace Hockey {
 		Role         position;
 		
 	public:
-		Player();
 		Player(char *name, unsigned int points, Role position);
-		
-		void copy(Player p);
 		
 		void		 get_name(char *container);
 		unsigned int get_points();

@@ -11,19 +11,17 @@ namespace Hockey {
 		unsigned int size;
 		
 	protected:
-		Player players[MAX_PLAYERS];
+		Player *players[MAX_PLAYERS];
 		
 	public:
-		Team();
 		Team(char *name);
-		
-		void copy(Team t);
+		~Team();
 		
 		void		 get_name(char *container);
 		unsigned int get_points();
 		unsigned int get_size();
 		
-		int add_player(Player p);
+		int add_player(Player *p);
 		int remove_player(char *name);
 	};
 }
