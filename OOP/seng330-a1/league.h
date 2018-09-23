@@ -20,8 +20,8 @@ namespace Hockey {
 		void		 get_name(char *container);
 		unsigned int get_size();
 		
-		int add_team(Team *t);
-		int remove_team(char *name);
+		bool add_team(Team *t);
+		bool remove_team(char *name);
 	};
 }
 

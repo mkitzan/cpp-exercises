@@ -21,8 +21,8 @@ namespace Hockey {
 		unsigned int get_points();
 		unsigned int get_size();
 		
-		int add_player(Player *p);
-		int remove_player(char *name);
+		bool add_player(Player *p);
+		bool remove_player(char *name);
 	};
 }
 

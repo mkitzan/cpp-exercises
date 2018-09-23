@@ -1,5 +1,5 @@
-#include <string.h>
 #include <iostream>
+#include <string.h>
 #include "team.h"
 using namespace std;
 using namespace Hockey;
@@ -35,17 +35,18 @@ unsigned int Hockey::Team::get_size() {
 }
 
 
-int Hockey::Team::add_player(Player *p) {
+bool Hockey::Team::add_player(Player *p) {
 	if(this->size >= MAX_PLAYERS) 
-		return 0;
+		return false;
 	
 	this->players[this->size++] = p;
-	return 1;
+	return true;
 }
 
 
-int Hockey::Team::remove_player(char *name) {
-	unsigned int i, found = 0;
+bool Hockey::Team::remove_player(char *name) {
+	unsigned int i;
+	bool found = false;
 	char temp[MAX_NAME_LEN];
 	
 	for(i = 0; i < this->size; i++) {
@@ -57,7 +58,7 @@ int Hockey::Team::remove_player(char *name) {
 		this->players[i]->get_name(temp);
 		
 		if(!strncmp(temp, name, MAX_NAME_LEN)) {
-			found = 1;
+			found = true;
 			delete this->players[i];
 		}
 	}

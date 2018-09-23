@@ -26,16 +26,17 @@ unsigned int Hockey::League::get_size() {
 }
 
 
-int Hockey::League::add_team(Team *t) {
+bool Hockey::League::add_team(Team *t) {
 	if(this->size >= MAX_TEAMS) 
-		return 0;
+		return false;
 	
 	this->teams[this->size++] = t;
-	return 1;
+	return true;
 }
 
-int Hockey::League::remove_team(char *name) {
-	unsigned int i, found = 0;
+bool Hockey::League::remove_team(char *name) {
+	unsigned int i;
+	bool found = false;
 	char temp[MAX_NAME_LEN];
 	
 	for(i = 0; i < this->size; i++) {
@@ -47,7 +48,7 @@ int Hockey::League::remove_team(char *name) {
 		this->teams[i]->get_name(temp);
 		
 		if(!strncmp(temp, name, MAX_NAME_LEN)) {
-			found = 1;
+			found = true;
 			delete this->teams[i];
 		}
 	}
