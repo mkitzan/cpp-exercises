@@ -12,6 +12,7 @@ namespace Hockey {
 		
 	public:
 		Player(char *name, unsigned int points, Role position);
+		Player(const Player &p);
 		
 		void		 get_name(char *container);
 		unsigned int get_points();
@@ -20,6 +21,8 @@ namespace Hockey {
 		void set_points(unsigned int points);
 		void add_points(unsigned int points);
 		void reset_points();
+		
+		bool operator<(Player p);
 	};
 }
 

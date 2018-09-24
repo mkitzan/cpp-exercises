@@ -7,11 +7,8 @@
 namespace Hockey {
 	class League {
 	private:
-		char         name[MAX_NAME_LEN];
-		unsigned int size;
-		
-	protected:
-		Team *teams[MAX_TEAMS];
+		char name[MAX_NAME_LEN];
+		std::vector<Team> teams;
 		
 	public:
 		League(char *name);
@@ -19,9 +16,12 @@ namespace Hockey {
 		
 		void		 get_name(char *container);
 		unsigned int get_size();
+		std::vector<Team> get_teams();
 		
-		bool add_team(Team *t);
+		bool add_team(Team t);
 		bool remove_team(char *name);
+		
+		void sort();
 	};
 }
 

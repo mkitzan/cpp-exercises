@@ -1,18 +1,18 @@
 #include <iostream>
+#include <algorithm>
 #include <string.h>
 #include "league.h"
+using namespace std;
 using namespace Hockey;
 
 
 Hockey::League::League(char *name) {
 	strncpy(this->name, name, MAX_NAME_LEN);
-	this->size = 0;
 }
 
 
 Hockey::League::~League() {
-	while(this->size)
-		delete this->teams[--this->size];
+	this->teams.clear();
 }
 
 
@@ -22,39 +22,44 @@ void Hockey::League::get_name(char *container) {
 
 
 unsigned int Hockey::League::get_size() {
-	return this->size;
+	return this->teams.size();
 }
 
 
-bool Hockey::League::add_team(Team *t) {
-	if(this->size >= MAX_TEAMS) 
+vector<Team> Hockey::League::get_teams() {
+	vector<Team> copy(this->teams);
+	return copy; //stackoverflow says this is kosher, idk
+}
+
+
+bool Hockey::League::add_team(Team t) {
+	if(this->teams.size() >= MAX_TEAMS) 
 		return false;
 	
-	this->teams[this->size++] = t;
+	this->teams.push_back(t);
 	return true;
 }
+
 
 bool Hockey::League::remove_team(char *name) {
 	unsigned int i;
 	bool found = false;
 	char temp[MAX_NAME_LEN];
 	
-	for(i = 0; i < this->size; i++) {
-		if(found) {
-			this->teams[i-1]= this->teams[i];
-			continue;
-		} 
-		
-		this->teams[i]->get_name(temp);
+	for(i = 0; i < this->teams.size(); i++) {
+		this->teams[i].get_name(temp);
 		
 		if(!strncmp(temp, name, MAX_NAME_LEN)) {
 			found = true;
-			delete this->teams[i];
+			this->teams.erase(this->teams.begin()+i);
+			break;
 		}
 	}
 	
-	if(found)
-		this->size--;
-	
 	return found;
+}
+
+
+void Hockey::League::sort() {
+	std::sort(this->teams.begin(), this->teams.end());
 }
